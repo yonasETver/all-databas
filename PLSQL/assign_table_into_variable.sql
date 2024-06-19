@@ -1,0 +1,49 @@
+--Assign table value to variable 
+
+
+-- drop table
+DROP TABLE CUSTOMERS;
+
+-- create table
+CREATE TABLE CUSTOMERS(
+    ID INT NOT NULL,
+    NAME VARCHAR (20) NOT NULL,
+    AGE INT NOT NULL,
+    ADDRESS CHAR(25),
+    SALARY DECIMAL(18,2),
+    PRIMARY KEY (ID)    
+);
+
+-- single recored
+INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) VALUES (9, 'Abebe',30,'Addis Ababa',20000.00);
+
+-- multiple recored
+INSERT ALL
+      INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) VALUES (1, 'Yonas',30,'Addis Ababa',20000.00)
+      INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) VALUES (2, 'Veronica',24,'Addis Ababa',40000.00)
+      INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) VALUES (3, 'Addis',29,'Addis Ababa',50000.00)
+      INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) VALUES (4, 'Eyob',35,'Addis Ababa',100000.00)
+      INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) VALUES (5, 'Tizita',33,'Addis Ababa',200000.00)
+      INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) VALUES (6, 'Girum',44,'Addis Ababa',2000000.00)
+      INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) VALUES (7, 'Hareg',42,'Addis Ababa',200000.00)
+      INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY) VALUES (8, 'Kidest',30,'Hawassa',100000.00)
+      
+SELECT 1 FROM DUAL;
+
+/*
+*assign recored into variable
+*/
+
+SET SERVEROUTPUT ON;
+DECLARE
+    C_ID CUSTOMERS.ID%TYPE:=1;
+    C_NAME CUSTOMERS.NAME%TYPE;
+    C_AGE CUSTOMERS.AGE%TYPE;
+    C_ADDRESS CUSTOMERS.ADDRESS%TYPE;
+    C_SALARY CUSTOMERS.SALARY%TYPE;
+BEGIN
+    SELECT name,age, address,salary INTO C_NAME,C_AGE,C_ADDRESS,C_SALARY FROM  CUSTOMERS WHERE id = C_ID;
+    
+    dbms_output.put_line('Customer: '||c_name||' from '|| c_address || 'recive '|| c_salary || ' birr');
+END;
+/
